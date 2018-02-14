@@ -16,11 +16,18 @@ cmake -G "Unix Makefiles" ..
 make
 make install
 
+cd ../..
+
 # Update install directory
-sed -i "s@^DOXY_DIR *=.*@DOXY_DIR = $PWD/Doxyfile@" ./doxy || echo "Doxy not in currently working directory. Run from the install directory where you have doxy."
+sed -i "s@^DOXY_DIR *=.*@DOXY_DIR=$PWD/Doxyfile@" ./doxy || echo "Doxy not in currently working directory. Run from the install directory where you have doxy."
 
 # Add doxy to global variabels
-ln -s $PWD/doxy /usr/bin/doxy || echo "Something went wrong. Try running as sudo"
+ln -s $PWD/doxy /usr/bin/doxy || \
+echo "Attempting to remove" && \
+rm /usr/bin/doxy && \
+echo "Removed old doxy link succesfully" && \
+ln -s $PWD/doxy /usr/bin/doxy || \
+echo "Something went wrong. Try running as sudo"
 
-
+echo "Done see README.md for usage details"
 

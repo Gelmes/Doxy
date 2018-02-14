@@ -3,36 +3,44 @@
 # Date  : 2/5/2018
 # Desc  : Generates costum documentation from inputs
 
-DOXY_DIR=~/Programs/doxygen/Doxyfile
+DOXY_DIR=/home/taiga/Documents/Doxy/Doxyfile
 REDIRECT='<meta http-equiv="refresh" content="0; url=./html/files.html"/>'
 
 print_usage(){
 	echo "Usage: doxy [intput [output]]"
 }
+run_doxygen(){
+    doxygen $DOXY_DIR
+}
 
 if [ $# -eq 0 ]
 then 
-	sed -i "s@^INPUT *=.*@INPUT = $PWD@" $DOXY_DIR
-	sed -i "s@^OUTPUT_DIRECTORY *=.*@OUTPUT_DIRECTORY = $PWD@" $DOXY_DIR
-	echo $REDIRECT >> $PWD/index.html
-	echo "Input : $PWD"
-	echo "Output: $PWD/html"
+	sed -i "s@^INPUT *=.*@INPUT = $PWD@" $DOXY_DIR && \
+	sed -i "s@^OUTPUT_DIRECTORY *=.*@OUTPUT_DIRECTORY = $PWD@" $DOXY_DIR && \
+	echo $REDIRECT >> $PWD/index.html && \
+	echo "Input : $PWD" && \
+	echo "Output: $PWD/html" && \
+        run_doxygen || \
+        echo "oops.. Something went wrong. Write a bug report"
 elif [ $# -eq 1 ]
 then
-	sed -i "s@^INPUT *=.*@INPUT = $1@" $DOXY_DIR
-	sed -i "s@^OUTPUT_DIRECTORY *=.*@OUTPUT_DIRECTORY = $PWD@" $DOXY_DIR
-	echo $REDIRECT >> $PWD/index.html
-	echo "Input : $1"
-	echo "Output: $PWD/html"
+	sed -i "s@^INPUT *=.*@INPUT = $1@" $DOXY_DIR && \
+	sed -i "s@^OUTPUT_DIRECTORY *=.*@OUTPUT_DIRECTORY = $PWD@" $DOXY_DIR && \
+	echo $REDIRECT >> $PWD/index.html && \
+	echo "Input : $1" && \
+	echo "Output: $PWD/html" && \
+        run_doxygen || \
+        echo "oops.. Something went wrong. Write a bug report"
 elif [ $# -eq 2 ]
 then 
-	sed -i "s@^INPUT *=.*@INPUT = $1@" $DOXY_DIR
-	sed -i "s@^OUTPUT_DIRECTORY *=.*@OUTPUT_DIRECTORY = $2@" $DOXY_DIR
-	echo $REDIRECT >> $2/index.html
-	echo "Input : $1"
-	echo "Output: $2/html"
+	sed -i "s@^INPUT *=.*@INPUT = $1@" $DOXY_DIR && \
+	sed -i "s@^OUTPUT_DIRECTORY *=.*@OUTPUT_DIRECTORY = $2@" $DOXY_DIR && \
+	echo $REDIRECT >> $2/index.html && \
+	echo "Input : $1" && \
+	echo "Output: $2/html" && \
+        run_doxygen || \
+        echo "oops.. Something went wrong. Write a bug report"
 else
 	print_usage
 fi
 
-doxygen $DOXY_DIR
