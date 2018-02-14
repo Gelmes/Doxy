@@ -11,3 +11,5 @@ This will try to install doxygen and its dependencies automatically. It will als
 # Usage
 from the directory you want to generate documentation from call
 ```sudo ./doxy```
+
+The documentation will be generated into an html directory and a index.html file will be generated that simply redirects you to doxygens file list. This is so you don't have to look for the main page in the long list of files generated under the html directory.
