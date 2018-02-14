@@ -7,7 +7,7 @@
 apt-get update
 apt-get install build-essential
 apt install cmake
-apt-get install flex bison dot graphviz
+apt-get install flex bison graphviz
 git clone https://github.com/doxygen/doxygen.git
 cd doxygen
 mkdir build
