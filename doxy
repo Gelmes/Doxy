@@ -21,7 +21,7 @@ then
 	echo "Input : $PWD" && \
 	echo "Output: $PWD/html" && \
         run_doxygen || \
-        echo "oops.. Something went wrong. Write a bug report"
+        echo "oops.. Something went wrong. Try running as sudo or Write a bug report"
 elif [ $# -eq 1 ]
 then
 	sed -i "s@^INPUT *=.*@INPUT = $1@" $DOXY_DIR && \
@@ -30,7 +30,7 @@ then
 	echo "Input : $1" && \
 	echo "Output: $PWD/html" && \
         run_doxygen || \
-        echo "oops.. Something went wrong. Write a bug report"
+        echo "oops.. Something went wrong. Try running as sudo or Write a bug report"
 elif [ $# -eq 2 ]
 then 
 	sed -i "s@^INPUT *=.*@INPUT = $1@" $DOXY_DIR && \
@@ -39,7 +39,7 @@ then
 	echo "Input : $1" && \
 	echo "Output: $2/html" && \
         run_doxygen || \
-        echo "oops.. Something went wrong. Write a bug report"
+        echo "oops.. Something went wrong. Try running as sudo or Write a bug report"
 else
 	print_usage
 fi
